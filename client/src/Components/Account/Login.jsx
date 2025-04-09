@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import {Box, TextField, Button, styled, Typography} from "@mui/material";
 
 const Component = styled(Box)`
@@ -50,18 +50,37 @@ const Text = styled(Typography)`
 const Login = () => {
 
     const imageURL = 'https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png';
+    const [account, toggleAccount] = useState("login");
+    const toggleSignUp = ()=>{
+      account === "signup" ? toggleAccount("login") : toggleAccount("signup");
+    }
       return(
         <Component>
             <Box>
-            <img src={imageURL} alt="Login" />
-            <Wrapper>
-            <TextField variant="standard" label="Username"/>
-            <TextField variant="standard" label="Password"/>
-            <LoginButton variant="contained">Login</LoginButton>
-            <Typography style={{textAlign: 'center'}}>OR</Typography>
-            <SignupButton variant="contained">Create an account</SignupButton>
-            </Wrapper>
+            <Image src={imageURL} alt="Login" />
+            {
+                  account === "login" ?
+                  <Wrapper>
+                        <TextField variant="standard" label="Enter Username"/>
+                        <TextField variant="standard" label="Enter Password"/>
+                        <LoginButton variant="contained">Login</LoginButton>
+                        <Typography style={{textAlign: 'center'}}>OR</Typography>
+                        <SignupButton onClick={()=>toggleSignUp()}>Create an account</SignupButton>
+                  </Wrapper> 
+                  :
+                  
+                  <Wrapper>
+                        <TextField variant="standard" label="Enter Name"/>      
+                        <TextField variant="standard" label="Enter Username"/>
+                        <TextField variant="standard" label="Enter Password"/>
+                        <SignupButton >Signup</SignupButton>
+                        <Typography style={{textAlign: 'center'}}>OR</Typography>
+                        <LoginButton variant="contained" onClick={()=>toggleSignUp()}>Already have an account</LoginButton>
+                  </Wrapper>
+            
+}
             </Box>
+
         </Component>
         
       )
