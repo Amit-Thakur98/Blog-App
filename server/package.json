@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amit-Thakur98/Blog-App.git"
+  },
+  "author": "Amit Thakur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amit-Thakur98/Blog-App/issues"
+  },
+  "homepage": "https://github.com/Amit-Thakur98/Blog-App#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

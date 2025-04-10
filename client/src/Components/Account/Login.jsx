@@ -46,13 +46,22 @@ const Text = styled(Typography)`
       color: #878787;
       font-size: 14px;
 `
-
+const signupInitialValues = {
+      name : "name",
+      username : "username",
+      password : "password"
+}
 const Login = () => {
 
     const imageURL = 'https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png';
     const [account, toggleAccount] = useState("login");
     const toggleSignUp = ()=>{
       account === "signup" ? toggleAccount("login") : toggleAccount("signup");
+    }
+    const [signup, setsignup] = useState(signupInitialValues);
+
+    const onInputChange = (e) => {
+      setsignup({...signup, [e.target.name]: e.target.value});
     }
       return(
         <Component>
@@ -61,8 +70,8 @@ const Login = () => {
             {
                   account === "login" ?
                   <Wrapper>
-                        <TextField variant="standard" label="Enter Username"/>
-                        <TextField variant="standard" label="Enter Password"/>
+                        <TextField variant="standard" onChange={()=>onInputChange()} label="Enter Username"/>
+                        <TextField variant="standard" onChange={()=>onInputChange()} label="Enter Password"/>
                         <LoginButton variant="contained">Login</LoginButton>
                         <Typography style={{textAlign: 'center'}}>OR</Typography>
                         <SignupButton onClick={()=>toggleSignUp()}>Create an account</SignupButton>
@@ -70,9 +79,9 @@ const Login = () => {
                   :
                   
                   <Wrapper>
-                        <TextField variant="standard" label="Enter Name"/>      
-                        <TextField variant="standard" label="Enter Username"/>
-                        <TextField variant="standard" label="Enter Password"/>
+                        <TextField variant="standard" onChange={(e)=>onInputChange(e)} name = "name" label="Enter Name"/>      
+                        <TextField variant="standard" onChange={(e)=>onInputChange(e)} name = "username" label="Enter Username"/>
+                        <TextField variant="standard" onChange={(e)=>onInputChange(e)} name = "password" label="Enter Password"/>
                         <SignupButton >Signup</SignupButton>
                         <Typography style={{textAlign: 'center'}}>OR</Typography>
                         <LoginButton variant="contained" onClick={()=>toggleSignUp()}>Already have an account</LoginButton>
